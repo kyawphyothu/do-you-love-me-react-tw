@@ -34,19 +34,11 @@ export default function App() {
 
             <div className="font-Dancing-Script text-5xl font-semibold text-pink-600 text-center mb-6">Do You Love Me?</div>
             {
-              isYes ? (
-                gifs.filter(i => i.id===randomPicId).filter(i => i.type==="done").map(i => {
+                gifs.filter(i => i.id===randomPicId).map(i => {
                   return (
-                    <img src={i.src} key={i.id} className="h-52 rounded-xl shadow-xl" />
+                    <img src={i.src} key={i.id} className={`h-52 rounded-xl shadow-xl ${i.type===(isYes?"ask":"done") && "hidden"}`} />
                   )
                 })
-              ) : (
-                gifs.filter(i => i.id===randomPicId).filter(i => i.type==="ask").map(i => {
-                  return (
-                    <img src={i.src} key={i.id} className="h-52 rounded-xl shadow-xl" />
-                  )
-                })
-              )
             }
             {
               isYes ? (

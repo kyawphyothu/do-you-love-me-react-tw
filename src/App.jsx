@@ -8,7 +8,9 @@ export default function App() {
 
   // const randomPicId = Math.ceil(Math.random()*7);
   // const tailwindCssClasses = ["1/2", "1/3", "1/4", "2/3", "2/4", "3/4"]
-  const tailwindCssClasses = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,16,20,24,28, 32,36,40,44, 48,52]
+  // const tailwindCssClasses = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,16,20,24,28, 32,36,40,44, 48,52]
+
+  const totalPic = 8;
 
   const handleClickNo = () => {
     setNoBtnPosition({position: "absolute", top: `${Math.floor(Math.random()*90)}%`, left: `${Math.floor(Math.random()*90)}%`});
@@ -19,7 +21,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    setRandomPicId(Math.ceil(Math.random()*7));
+    setRandomPicId(Math.ceil(Math.random()*totalPic));
   }, [])
 
   return (
@@ -32,11 +34,19 @@ export default function App() {
 
             <div className="font-Dancing-Script text-5xl font-semibold text-pink-600 text-center mb-6">Do You Love Me?</div>
             {
-              gifs.filter(i => i.id===randomPicId).filter(i => i.type===(isYes?"done":"ask")).map(i => {
-                return (
-                  <img src={i.src} key={i.id} className="h-52 rounded-xl shadow-xl" />
-                )
-              })
+              isYes ? (
+                gifs.filter(i => i.id===randomPicId).filter(i => i.type==="done").map(i => {
+                  return (
+                    <img src={i.src} key={i.id} className="h-52 rounded-xl shadow-xl" />
+                  )
+                })
+              ) : (
+                gifs.filter(i => i.id===randomPicId).filter(i => i.type==="ask").map(i => {
+                  return (
+                    <img src={i.src} key={i.id} className="h-52 rounded-xl shadow-xl" />
+                  )
+                })
+              )
             }
             {
               isYes ? (
